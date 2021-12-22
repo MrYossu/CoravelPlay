@@ -9,6 +9,7 @@
   <div class="col-1">Name</div>
   <div class="col-3"><input @bind-value="@_widget.Name" style="width: 100%" /></div>
   <div class="col-1"><button @onclick="AddNewWidget">Add</button></div>
+  <div class="col-1"><button @onclick="AddNewWidgetManual">Manual</button></div>
 </div>
 
 @code {
@@ -18,4 +19,13 @@
     await _dispatcher.Broadcast(new NewWidgetCreated(_widget));
     _widget = new();
   }
+
+  [Parameter]
+  public EventHandler<Widget> OnNewWidget { get; set; }
+
+  private void AddNewWidgetManual() {
+    OnNewWidget.Invoke(null, _widget);
+    _widget = new();
+  }
+
 }
