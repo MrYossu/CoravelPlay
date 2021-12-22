@@ -1,0 +1,7 @@
+﻿@using CoravelPlay.Data
+
+<ul>
+  @foreach (Widget w in _widgets) {
+  <li>&quot;@w.Name&quot; created at @w.Date.ToLongTimeString()</li>
+  }
+</ul>

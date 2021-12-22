@@ -1,0 +1,21 @@
+﻿@using Coravel.Events.Interfaces
+@using CoravelPlay.Data
+@using CoravelPlay.Events
+@inject IDispatcher _dispatcher
+
+<h3>New widget</h3>
+
+<div class="row mb-2">
+  <div class="col-1">Name</div>
+  <div class="col-3"><input @bind-value="@_widget.Name" style="width: 100%" /></div>
+  <div class="col-1"><button @onclick="AddNewWidget">Add</button></div>
+</div>
+
+@code {
+  private Widget _widget = new();
+
+  private async Task AddNewWidget() {
+    await _dispatcher.Broadcast(new NewWidgetCreated(_widget));
+    _widget = new();
+  }
+}
