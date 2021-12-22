@@ -3,6 +3,6 @@
 namespace CoravelPlay.Data {
   public class Widget {
     public string Name { get; set; }
-    public DateTime Date { get; set; } = DateTime.Now;
+    public DateTime Date { get; private set; } = DateTime.Now;
   }
 }
